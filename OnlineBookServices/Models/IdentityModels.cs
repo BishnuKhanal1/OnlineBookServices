@@ -20,6 +20,13 @@ namespace OnlineBookServices.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        //creating object (database model)- by Bishnu Khanal**
+
+        public DbSet<Book> Books { get; set; } //invokes the Book class
+
+        public DbSet<Genre> Genre { get; set; } // invokes the Genre class
+
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
