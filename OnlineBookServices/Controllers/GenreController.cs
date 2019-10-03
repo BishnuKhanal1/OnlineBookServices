@@ -24,6 +24,16 @@ namespace OnlineBookServices.Controllers
             return View(db.Genre.ToList()); //retrives genre from db and converts to the list and passes to the view
         }
 
+        //adding another action to create genre 
+        /// <summary>
+        /// /this action will create a genre
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Create() //creating just a new genre, no need to pass anything in the view for that
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
