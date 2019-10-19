@@ -29,11 +29,25 @@ namespace OnlineBookServices.Controllers
         /// /this action will create a genre
         /// </summary>
         /// <returns></returns>
+        /// This is a Get Action
         public ActionResult Create() //creating just a new genre, no need to pass anything in the view for that
         {
             return View();
         }
 
+        //creating Post Action
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Genre genre)
+        {
+            if (ModelState.IsValid) //validates attributes from genra model and save changes
+            {
+                db.Genre.Add(genre);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
