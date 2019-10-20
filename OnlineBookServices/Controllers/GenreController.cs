@@ -1,6 +1,7 @@
 ﻿using OnlineBookServices.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -72,7 +73,43 @@ namespace OnlineBookServices.Controllers
             return View(genre);
         }
 
+        /// <summary>
+        /// Edit Details
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Genre genre = db.Genres.Find(id);
+            if (genre == null)
+            {
+                return HttpNotFound();
+            }
+            return View(genre);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        
+        public ActionResult Edit(Genre genre)
+        {
+            if(ModelState.IsValid)
+            {
+                //find genre frm db, getgenre ID and 
+                /*var GenreInDb = db.Genres.FirstOrDefault(g => g.Id.Equals(genre.Id));
+                  GenreInDb.Name = genre.Name;*/
+                //this makes changes to all column , saves changes and redirects to index
+                db.Entry(genre).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        
 
         protected override void Dispose(bool disposing)
         {
