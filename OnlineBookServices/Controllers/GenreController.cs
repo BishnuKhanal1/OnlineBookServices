@@ -109,8 +109,36 @@ namespace OnlineBookServices.Controllers
             }
             return View();
         }
-        
+        /// <summary>
+        /// Genre Delete , gets id as edit
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Genre genre = db.Genres.Find(id);
+            if (genre == null)
+            {
+                return HttpNotFound();
+            }
+            return View(genre);
+        }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            Genre genre = db.Genres.Find(id);
+            db.Genres.Remove(genre);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            
+        }
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
