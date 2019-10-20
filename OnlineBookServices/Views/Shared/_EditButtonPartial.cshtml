@@ -1,0 +1,11 @@
+﻿@*This is edit btn only, so to edit, need to pass id (int)*@
+
+@model int 
+
+<a type="button" class="btn btn-primary btn-sm" href="@Url.Action("Edit",
+                                                     new { id = Model})">
+    <span class="glyphicon glyphicon-pencil"></span>
+    <span>Edit</span>
+
+</a>
+
