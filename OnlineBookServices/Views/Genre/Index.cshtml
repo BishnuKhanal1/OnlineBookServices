@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<OnlineBookServices.Models.Genre>
+
+@*accessing IndividaulButtonPartial class to access the button icons - 'using' following line*@
+@using OnlineBookServices.Models
+
 @{
     ViewBag.Title = "Index";
 }
@@ -12,8 +16,9 @@
 <table class="table table-condensed table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(m=>m.Name)
+            @Html.DisplayNameFor(m => m.Name)
         </th>
+        <th></th>
         <th></th>
     </tr>
 
@@ -24,7 +29,11 @@
                 @Html.DisplayFor(m=>item.Name)
             </td>
             <td>
-                Edit | Details | Delete
+                @* using these buttons : Edit | Details | Delete*@
+                @Html.Partial("_TableButtonPartial", new IndividualButtonPartial
+                   { GenreId = item.Id})
+               
+
             </td>
         </tr>
     }
