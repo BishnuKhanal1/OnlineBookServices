@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,7 +22,7 @@ namespace OnlineBookServices.Controllers
         public ActionResult Index() //here to display table with all rows in db
                                     //and display complete genre
         {
-            return View(db.Genre.ToList()); //retrives genre from db and converts to the list and passes to the view
+            return View(db.Genres.ToList()); //retrives genre from db and converts to the list and passes to the view
         }
 
         //adding another action to create genre 
@@ -42,12 +43,37 @@ namespace OnlineBookServices.Controllers
         {
             if (ModelState.IsValid) //validates attributes from genra model and save changes
             {
-                db.Genre.Add(genre);
+                db.Genres.Add(genre);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
         }
+        /// <summary>
+        /// this method will return the Genre details /function, and pass genre id 
+        /// if id is null, then returns bad request, 
+        /// then  finds id from Genre tables in db and passess to genre,
+        /// if genre is null, then returns httpNotFound,
+        /// if genre is found, then genre is returned (view)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Details(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Genre genre = db.Genres.Find(id);
+            if(genre == null)
+            {
+                return HttpNotFound();
+            }
+            return View(genre);
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
