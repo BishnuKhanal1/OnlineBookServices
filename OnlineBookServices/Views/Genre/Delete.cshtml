@@ -13,19 +13,22 @@
     <div>
         <h3>Are you sure you want to delete this Genre?</h3>
         <hr />
-        <fieldset disabled>
-            @*This is a genra detail, for view only, so fieldset is disable*@
+        <div class="form-border">
+            <fieldset disabled>
+                @*This is a genra detail, for view only, so fieldset is disable*@
 
-            <div class="row" style="padding-bottom:5px;padding-top:5px;">
-                <div class="col-md-2">
-                    @Html.LabelFor(m=>m.Name, htmlAttributes:new {
-                      @class="control-label"})
+                <div class="row" style="padding-bottom:5px;padding-top:5px;">
+                    <div class="col-md-2">
+                        @Html.LabelFor(m=>m.Name, htmlAttributes:new {
+                          @class="control-label"})
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
                 </div>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                </div>
-            </div>
-        </fieldset>
+            </fieldset>
+        </div>
+        <br />
     </div>
     <div>
         @Html.Partial("_BackToListButtonPartial")
