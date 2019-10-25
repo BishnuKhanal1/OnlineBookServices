@@ -45,6 +45,9 @@ namespace OnlineBookServices.Models
         public int Pages { get; set; }
         [Required]
         public string ProductDimensions { get; set; }
+
+        [Required]
+        public string Publisher { get; set; } //do code first migrations-using nuget pkt manager
     }   
 
 }

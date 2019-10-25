@@ -77,6 +77,7 @@ namespace OnlineBookServices.Controllers
                 ISBN = bookvm.Book.ISBN,
                 Pages = bookvm.Book.Pages,
                 Price = bookvm.Book.Price,
+                Publisher = bookvm.Book.Publisher,
                 ProductDimensions = bookvm.Book.ProductDimensions,
                 PublicationDate = bookvm.Book.PublicationDate,
                 Title = bookvm.Book.Title
@@ -106,8 +107,13 @@ namespace OnlineBookServices.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.GenreId = new SelectList(db.Genres, "Id", "Name", book.GenreId);
-            return View(book);
+            var model = new BookViewModel
+            {
+                Book = book,
+                Genres = db.Genres.ToList()
+            };
+            //ViewBag.GenreId = new SelectList(db.Genres, "Id", "Name", book.GenreId);
+            return View(model);
         }
 
         // POST: Book/Edit/5
@@ -115,15 +121,34 @@ namespace OnlineBookServices.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ISBN,Title,Author,Description,ImageUrl,Availablity,Price,DateAdded,GenreId,PublicationDate,Pages,ProductDimensions")] Book book)
+        public ActionResult Edit(BookViewModel bookvm)
         {
+            var book = new Book
+            {
+                Id = bookvm.Book.Id, //Id added to edit the book
+                Author = bookvm.Book.Author,
+                Availablity = bookvm.Book.Availablity,
+                DateAdded = bookvm.Book.DateAdded,
+                Description = bookvm.Book.Description,
+                Genre = bookvm.Book.Genre,
+                GenreId = bookvm.Book.GenreId,
+                ImageUrl = bookvm.Book.ImageUrl,
+                ISBN = bookvm.Book.ISBN,
+                Pages = bookvm.Book.Pages,
+                Price = bookvm.Book.Price,
+                Publisher = bookvm.Book.Publisher,
+                ProductDimensions = bookvm.Book.ProductDimensions,
+                PublicationDate = bookvm.Book.PublicationDate,
+                Title = bookvm.Book.Title
+            };
             if (ModelState.IsValid)
             {
                 db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.GenreId = new SelectList(db.Genres, "Id", "Name", book.GenreId);
+            //ViewBag.GenreId = new SelectList(db.Genres, "Id", "Name", book.GenreId);
+            bookvm.Genres = db.Genres.ToList();
             return View(book);
         }
 
@@ -139,7 +164,14 @@ namespace OnlineBookServices.Controllers
             {
                 return HttpNotFound();
             }
-            return View(book);
+
+            var model = new BookViewModel
+            {
+                Book = book,
+                Genres = db.Genres.ToList()
+            };
+
+            return View(model);
         }
 
         // POST: Book/Delete/5

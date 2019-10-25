@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201909240007345_AddBookAndGenreClass.Designer.cs">
       <DependentUpon>201909240007345_AddBookAndGenreClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910250054260_AddPublisherToBookModel.cs" />
+    <Compile Include="Migrations\201910250054260_AddPublisherToBookModel.Designer.cs">
+      <DependentUpon>201910250054260_AddPublisherToBookModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
@@ -314,6 +318,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201909240007345_AddBookAndGenreClass.resx">
       <DependentUpon>201909240007345_AddBookAndGenreClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910250054260_AddPublisherToBookModel.resx">
+      <DependentUpon>201910250054260_AddPublisherToBookModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
