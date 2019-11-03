@@ -25,6 +25,7 @@ namespace OnlineBookServices.Models
         public DbSet<Book> Books { get; set; } //invokes the Book class
 
         public DbSet<Genre> Genres { get; set; } // invokes the Genre class
+        public DbSet<MembershipType> MembershipTypes { get; set; } // invokes the Genre class
 
 
         public ApplicationDbContext()
