@@ -19,14 +19,14 @@ namespace OnlineBookServices.Models
         [Required]
         public decimal SignUpFee { get; set; }
 
-        [DisplayName("Rental Rate")]
+        [DisplayName("Rental Rate - Monthly")]
         [Required]
         public decimal ChargeRateOneMonth { get; set; }
 
         [Required]
         public decimal ChargeRateSixMonth { get; set; }
 
-        [DisplayName("Selling Price")]
+        [DisplayName("Selling Price (%)")]
         [Required]
         public decimal SellingPrice { get; set; }
 
