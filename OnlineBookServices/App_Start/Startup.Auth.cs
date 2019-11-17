@@ -54,15 +54,15 @@ namespace OnlineBookServices
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "563180087788584",
+               appSecret: "b6a3de6ed0456bcbac68392362fe2a9a");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "26305434545-c00jcqunpd8s8m5k434i9cql3rnrqh64.apps.googleusercontent.com",
+                ClientSecret = "2aaFwk3dqek215dMC8MutlhS"
+            });
         }
     }
 }
