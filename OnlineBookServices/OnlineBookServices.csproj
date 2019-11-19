@@ -210,6 +210,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipTypeController.cs" />
+    <Compile Include="Extensions\ThumbnailExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -340,7 +341,7 @@
     <Content Include="Views\MembershipType\Details.cshtml" />
     <Content Include="Views\MembershipType\Edit.cshtml" />
     <Content Include="Views\MembershipType\Index.cshtml" />
-    <Content Include="Views\_ThumbnailAreaPartial.cshtml" />
+    <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
