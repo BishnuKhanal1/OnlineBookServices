@@ -139,7 +139,20 @@ namespace OnlineBookServices.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            //passing
+             using (var db = ApplicationDbContext.Create())
+            {
+                RegisterViewModel newUser = new RegisterViewModel
+                {
+                    MembershipTypes = db.MembershipTypes.ToList(),
+                    BirthDate = DateTime.Now
+                };
+
+                return View(newUser);
+
+            }
+
+           // return View();   
         }
 
         //

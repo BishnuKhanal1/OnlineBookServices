@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineBookServices.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -81,6 +82,10 @@ namespace OnlineBookServices.Models
         public bool RememberMe { get; set; }
     }
 
+    /// <summary>
+    /// This is for register view model
+    /// the properties below will be used to register user
+    /// </summary>
     public class RegisterViewModel
     {
         [Required]
@@ -98,6 +103,33 @@ namespace OnlineBookServices.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        ////adding more properties 
+        public bool Disable { get; set; }
+        public ICollection<MembershipType> MembershipTypes { get; set; }
+
+        [Required]
+        public int MembershipTypeId { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Phone")]
+        public string PhoneName { get; set; }
+
+        [Required]
+        [DateRange("01/01/1900")]
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0: MM dd yyyy}")]
+        public DateTime BirthDate { get; set; }
+
     }
 
     public class ResetPasswordViewModel
