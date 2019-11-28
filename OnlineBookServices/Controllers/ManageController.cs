@@ -64,15 +64,31 @@ namespace OnlineBookServices.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
+
+            using (var db = ApplicationDbContext.Create())
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
+                var userInDb = db.Users.First(u => u.Id.Equals(userId));
+         
+                var model = new IndexViewModel
+                {
+                    HasPassword = HasPassword(),
+                    PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+                    TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+                    Logins = await UserManager.GetLoginsAsync(userId),
+                    BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                    BirthDate = userInDb.BirthDate,
+                    Email = userInDb.Email,
+                    Id= userInDb.Id,
+                    FirstName = userInDb.FirstName,
+                    LastName = userInDb.LastName,
+                    MembershipTypeId = userInDb.MembershipTypeId,
+                    MembershipTypes= db.MembershipTypes.ToList(),
+                    Phone = userInDb.PhoneName
+
+                };
             return View(model);
+            }
+
         }
 
         //

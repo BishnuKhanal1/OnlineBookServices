@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineBookServices.Models;
+using OnlineBookServices.Utility;
 
 namespace OnlineBookServices.Controllers
 {
@@ -164,10 +166,41 @@ namespace OnlineBookServices.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    BirthDate = model.BirthDate,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    PhoneName = model.PhoneName,
+                    MembershipTypeId = model.MembershipTypeId,
+                    Disable = false
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    using(var db = ApplicationDbContext.Create())
+                    {
+                        model.MembershipTypes = db.MembershipTypes.ToList();
+                        var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManager = new RoleManager<IdentityRole>(roleStore);
+                        var membership = model.MembershipTypes.SingleOrDefault(m => m.Id == model.MembershipTypeId).Name.ToString();
+
+                        if (membership.ToLower().Contains("admin"))
+                        {
+                            //for Super Admin
+                            await roleManager.CreateAsync(new IdentityRole(SD.AdminUserRole));
+                            await UserManager.AddToRoleAsync(user.Id, SD.AdminUserRole);
+                        }
+                        else
+                        {
+                            //for customer
+                            await roleManager.CreateAsync(new IdentityRole(SD.EndUserRole));
+                            await UserManager.AddToRoleAsync(user.Id, SD.EndUserRole);
+                        }
+                    }
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
