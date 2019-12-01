@@ -121,7 +121,7 @@ namespace OnlineBookServices.Models
 
         [Required]
         [Display(Name = "Phone")]
-        public string PhoneName { get; set; }
+        public string Phone { get; set; }
 
         [Required]
         [DateRange("01/01/1900")]

@@ -15,7 +15,7 @@ namespace OnlineBookServices.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public string PhoneName { get; set; }
+        public string Phone { get; set; }
 
         public DateTime BirthDate { get; set; }
 

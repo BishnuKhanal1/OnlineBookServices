@@ -83,7 +83,7 @@ namespace OnlineBookServices.Controllers
                     LastName = userInDb.LastName,
                     MembershipTypeId = userInDb.MembershipTypeId,
                     MembershipTypes= db.MembershipTypes.ToList(),
-                    Phone = userInDb.PhoneName
+                    Phone = userInDb.Phone
 
                 };
             return View(model);
@@ -116,7 +116,7 @@ namespace OnlineBookServices.Controllers
                     LastName = userInDb.LastName,
                     MembershipTypeId = userInDb.MembershipTypeId,
                     MembershipTypes = db.MembershipTypes.ToList(),
-                    Phone = userInDb.PhoneName
+                    Phone = userInDb.Phone
 
                 };
                 return View(model);
@@ -139,7 +139,7 @@ namespace OnlineBookServices.Controllers
                     userInDb.FirstName = model.FirstName;
                     userInDb.LastName = model.LastName;
                    // userInDb.MembershipTypeId = model.MembershipTypeId; (we do not update this in db because edit is disable for this)
-                    userInDb.PhoneName = model.Phone;
+                    userInDb.Phone = model.Phone;
                     userInDb.BirthDate = model.BirthDate;
 
                     db.SaveChanges();

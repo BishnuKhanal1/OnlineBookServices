@@ -210,6 +210,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipTypeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extensions\DateRangeAttribute.cs" />
     <Compile Include="Extensions\ThumbnailExtension.cs" />
     <Compile Include="Global.asax.cs">
@@ -235,6 +236,14 @@
     <Compile Include="Migrations\201911172020156_AddFieldsToMembershipTable.Designer.cs">
       <DependentUpon>201911172020156_AddFieldsToMembershipTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912011715511_SpellingUpdateToUsersPhone.cs" />
+    <Compile Include="Migrations\201912011715511_SpellingUpdateToUsersPhone.Designer.cs">
+      <DependentUpon>201912011715511_SpellingUpdateToUsersPhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912012248366_SeedUsersDatabase.cs" />
+    <Compile Include="Migrations\201912012248366_SeedUsersDatabase.Designer.cs">
+      <DependentUpon>201912012248366_SeedUsersDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
@@ -249,6 +258,7 @@
     <Compile Include="Utility\SD.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
     <Compile Include="ViewModel\ThumbnailBoxViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -345,6 +355,10 @@
     <Content Include="Views\MembershipType\Index.cshtml" />
     <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -377,6 +391,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911172020156_AddFieldsToMembershipTable.resx">
       <DependentUpon>201911172020156_AddFieldsToMembershipTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912011715511_SpellingUpdateToUsersPhone.resx">
+      <DependentUpon>201912011715511_SpellingUpdateToUsersPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912012248366_SeedUsersDatabase.resx">
+      <DependentUpon>201912012248366_SeedUsersDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

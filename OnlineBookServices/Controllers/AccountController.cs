@@ -172,7 +172,7 @@ namespace OnlineBookServices.Controllers
                     BirthDate = model.BirthDate,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    PhoneName = model.PhoneName,
+                    Phone = model.Phone,
                     MembershipTypeId = model.MembershipTypeId,
                     Disable = false
                 };
